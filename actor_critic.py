@@ -63,7 +63,52 @@ class PendulumTileCoder:
         return np.array(tiles)
 
 
+def compute_softmax_prob(actor_w, tiles):
+    """
+    Computes softmax probability for all actions
 
+    Args:
+    actor_w - np.array, an array of actor weights
+    tiles - np.array, an array of active tiles
+
+    Returns:
+    softmax_prob - np.array, an array of size equal to num. actions, and sums to 1.
+    """
+    
+    # First compute the list of state-action preferences (1~2 lines)
+    # state_action_preferences = ? (list of size 3)
+    state_action_preferences = []
+    ### START CODE HERE ###
+
+    ### END CODE HERE ###
+
+    # Set the constant c by finding the maximum of state-action preferences (use np.max) (1 line)
+    # c = ? (float)
+    ### START CODE HERE ###
+
+    ### END CODE HERE ###
+
+    # Compute the numerator by subtracting c from state-action preferences and exponentiating it (use np.exp) (1 line)
+    # numerator = ? (list of size 3)
+    ### START CODE HERE ###
+
+    ### END CODE HERE ###
+
+    # Next compute the denominator by summing the values in the numerator (use np.sum) (1 line)
+    # denominator = ? (float)
+    ### START CODE HERE ###
+
+    ### END CODE HERE ###
+
+
+    # Create a probability array by dividing each element in numerator array by denominator (1 line)
+    # We will store this probability array in self.softmax_prob as it will be useful later when updating the Actor
+    # softmax_prob = ? (list of size 3)
+    ### START CODE HERE ###
+
+    ### END CODE HERE ###
+
+    return softmax_prob
 
 
 
@@ -83,3 +128,29 @@ for obs in test_obs:
 
 for tiles in result:
     print(tiles)
+
+
+## Test Code for compute_softmax_prob() ##
+# set tile-coder
+iht_size = 4096
+num_tilings = 8
+num_tiles = 8
+test_tc = PendulumTileCoder(iht_size=iht_size, num_tilings=num_tilings, num_tiles=num_tiles)
+
+num_actions = 3
+actions = list(range(num_actions))
+actor_w = np.zeros((len(actions), iht_size))
+
+# setting actor weights such that state-action preferences are always [-1, 1, 2]
+actor_w[0] = -1./num_tilings
+actor_w[1] = 1./num_tilings
+actor_w[2] = 2./num_tilings
+
+# obtain active_tiles from state
+state = [-np.pi, 0.]
+angle, ang_vel = state
+active_tiles = test_tc.get_tiles(angle, ang_vel)
+
+# compute softmax probability
+softmax_prob = compute_softmax_prob(actor_w, active_tiles)
+print('softmax probability: {}'.format(softmax_prob))
