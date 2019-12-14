@@ -74,12 +74,12 @@ def compute_softmax_prob(actor_w, tiles):
     Returns:
     softmax_prob - np.array, an array of size equal to num. actions, and sums to 1.
     """
-    
+
     # First compute the list of state-action preferences (1~2 lines)
     # state_action_preferences = ? (list of size 3)
     state_action_preferences = []
     ### START CODE HERE ###
-
+    state_action_preferences = [actor_w[a][tiles].sum() for a in actor_w]
     ### END CODE HERE ###
 
     # Set the constant c by finding the maximum of state-action preferences (use np.max) (1 line)
