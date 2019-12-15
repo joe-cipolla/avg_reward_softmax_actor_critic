@@ -75,38 +75,22 @@ def compute_softmax_prob(actor_w, tiles):
     softmax_prob - np.array, an array of size equal to num. actions, and sums to 1.
     """
 
-    # First compute the list of state-action preferences (1~2 lines)
-    # state_action_preferences = ? (list of size 3)
-    state_action_preferences = []
-    ### START CODE HERE ###
+    # First compute the list of state-action preferences
     state_action_preferences = [actor_w[a][tiles].sum() for a in actor_w]
-    ### END CODE HERE ###
 
     # Set the constant c by finding the maximum of state-action preferences (use np.max) (1 line)
-    # c = ? (float)
-    ### START CODE HERE ###
-
-    ### END CODE HERE ###
+    c = np.max(state_action_preferences)
 
     # Compute the numerator by subtracting c from state-action preferences and exponentiating it (use np.exp) (1 line)
-    # numerator = ? (list of size 3)
-    ### START CODE HERE ###
-
-    ### END CODE HERE ###
+    numerator = [np.exp(a - c) for a in state_action_preferences]
 
     # Next compute the denominator by summing the values in the numerator (use np.sum) (1 line)
-    # denominator = ? (float)
-    ### START CODE HERE ###
-
-    ### END CODE HERE ###
+    denominator = np.sum(numerator)
 
 
     # Create a probability array by dividing each element in numerator array by denominator (1 line)
     # We will store this probability array in self.softmax_prob as it will be useful later when updating the Actor
-    # softmax_prob = ? (list of size 3)
-    ### START CODE HERE ###
-
-    ### END CODE HERE ###
+    softmax_prob = [i/denominator for i in numerator]
 
     return softmax_prob
 
