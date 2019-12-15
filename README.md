@@ -6,6 +6,7 @@ policy parameterization using Tile Coding in the Pendulum Swing-Up environment.
 
 ## Pendulum Swing-Up Environment
 ![Pendulum Swing-Up](https://miro.medium.com/max/1200/1*jLj9SYWI7e6RElIsI3DFjg.gif)
+
 This environment has a single pendulum that can swing 360 degrees. The pendulum is actuated by applying torque on its pivot point.
 The goal is to get the pendulum to balance up right from its resting position of hanging down towards the bottom with no velocity.
 The pendulum can move freely, subject only to gravity and the action applied to the agent.
@@ -23,14 +24,14 @@ the desired position.
 &nbsp;
 
 ## Actor-Critic Agent
-![Actor-Critic Agent](https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjai_DSg7jmAhVIRa0KHTfGCvAQjRx6BAgBEAQ&url=https%3A%2F%2Fsergioskar.github.io%2FActor_critics%2F&psig=AOvVaw1UL8dyfk6LV9dmCDH1P-RP&ust=1576512168478026)
+![Actor-Critic Agent](https://sergioskar.github.io/assets/img/posts/ac.jpg)
 The agent consists of two parts, an Actor and a Critic. The Actor learns a parameterized policy wile the Critic learns a state-value function.
 Since we are using discrete actions in the environment, the Actor will use a Softmax policy (formula below) with exponentiated action preferences.
 The Actor learns the sample-based estimate for the gradient of the average reward objective.
 The Critic learns using the average reward version of the semi-gradient TD (0) algorithm.
 
 ## Softmax Probability
-![Softmax Formula](https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiDuNzl_rfmAhURY6wKHR0eAWsQjRx6BAgBEAQ&url=https%3A%2F%2Ftowardsdatascience.com%2Fpolicy-based-reinforcement-learning-the-easy-way-8de9a3356083&psig=AOvVaw3PBu8RLg57aZRIPbkfE6f3&ust=1576510836057339)
+![Softmax Formula](https://miro.medium.com/max/900/1*tmz_nlcdNyCN0LXr123EqA.png)
 
 &nbsp;
 
