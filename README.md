@@ -25,6 +25,7 @@ the desired position.
 
 ## Actor-Critic Agent
 ![Actor-Critic Agent](https://sergioskar.github.io/assets/img/posts/ac.jpg)
+
 The agent consists of two parts, an Actor and a Critic. The Actor learns a parameterized policy wile the Critic learns a state-value function.
 Since we are using discrete actions in the environment, the Actor will use a Softmax policy (formula below) with exponentiated action preferences.
 The Actor learns the sample-based estimate for the gradient of the average reward objective.
